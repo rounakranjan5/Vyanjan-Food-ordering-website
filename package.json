@@ -1,0 +1,21 @@
+{
+  "name": "food-ordering-website",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "rounak",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html ",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^6.23.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}

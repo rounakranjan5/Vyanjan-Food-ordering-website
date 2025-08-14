@@ -1,0 +1,11 @@
+node_modules/
+
+node_modules_old/
+
+dist/
+build/
+
+parcel-cache/
+
+src/utils/mockData.js 
+src/utils/constants.js
