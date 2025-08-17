@@ -8,27 +8,32 @@ const Header=()=>{
 
     let onlineStatus = useOnlineStatus();
     return (
-        <div className="header">
+        <div className="flex justify-between flex-wrap bg-[#5a0602]">
 
-            <div className="logo-container">
-                <img src={LOGO_URL} alt="logo" className="logo"/>
-            </div>
+            <Link to="/" className="p-3 flex justify-center items-center">
+                <img src={LOGO_URL} alt="logo" className="w-25 rounded-full "/>
+                <h1 className="text-amber-300 text-3xl font-bold">&nbsp;&nbsp;Vyanjan</h1>
+            </Link>
 
-            <div className="nav-items">
-                <ul>
-                    <li>Online Status :{onlineStatus ? "✅" : "🔴"}</li>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
-                    <li>Cart</li>
-                    <button className="loginBtn" onClick={()=>{
+            <div className="text-white flex items-center flex-wrap text-lg pr-10">
+                <div>
+                <ul className="flex items-center flex-wrap space-x-6 list-none">
+                    <li><span>Online Status: {onlineStatus ? "✅" : "🔴"}</span></li>
+                    <li><Link to="/" className="hover:text-gray-300">Home</Link></li>
+                    <li><Link to="/about" className="hover:text-gray-300">About</Link></li>
+                    <li><Link to="/contact" className="hover:text-gray-300">Contact</Link></li>
+                    <li><span className="hover:text-gray-300 cursor-pointer">Cart🛒</span></li>
+                    <li>
+                    <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-red-800 px-6 py-3 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-yellow-300" onClick={()=>{
                          {
                             isLoggedIn==="Login" ? setIsLoggedIn("Logout") : setIsLoggedIn("Login");
                         }
                     }}>
-                       {isLoggedIn}
+                       {isLoggedIn === "Login" ? "🔐 Login" : "👋 Logout"}
                     </button>
+                    </li>
                 </ul>
+                </div>
             </div>  
 
         </div>

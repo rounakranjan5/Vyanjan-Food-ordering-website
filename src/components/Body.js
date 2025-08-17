@@ -20,8 +20,14 @@ const Body=()=>{
         const json=await data.json();
         console.log(json);
         
-        setListOfRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-        setfilteredRestaurants(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+        // Try different card indices as API returns different structures for different devices
+        const restaurants = json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || 
+                           json?.data?.cards?.[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants || 
+                           json?.data?.cards?.[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants || 
+                           json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+        
+        setListOfRestaurants(restaurants);
+        setfilteredRestaurants(restaurants);
     }
 
 
@@ -32,9 +38,9 @@ const Body=()=>{
 
     return listofRestaurants.length === 0 ? <Shimmer/> : (
         <div className="body">
-            <div className="search-filter-top-container">
-            <div className="filter-toprated-container">
-                <button className="filter-toprated-btn" 
+            <div >
+            <div className="flex justify-center items-center flex-wrap">
+                <button className="bg-emerald-500 text-black m-2 p-3 rounded-full font-bold cursor-pointer" 
                 onClick={
                     ()=>{
                     let topratedRes=filteredRestaurants.filter((res)=> 
@@ -46,7 +52,7 @@ const Body=()=>{
                 
                 &nbsp;
 
-                <button className="reset-btn" 
+                <button className="bg-lime-700 text-black m-2 p-3 rounded-full font-bold cursor-pointer" 
                 onClick={
                     ()=>{
                     setfilteredRestaurants(listofRestaurants);
@@ -54,17 +60,17 @@ const Body=()=>{
                 } >Show All Restaurants</button>
             </div>
 
-            <div className="search-container">
-                <input type="text" className="search-input" placeholder="Search for restaurants..." value={searchInp} onChange={(e)=>{
+            <div className="flex justify-center items-center flex-wrap">
+                <input type="text" className="w-6/12 border-2 p-2 m-5" placeholder="Search for restaurants..." value={searchInp} onChange={(e)=>{
                     setSearchInp(e.target.value)
                 }} />
                 &nbsp;
-                <button className="search-btn" onClick={()=>{
+                <button className="bg-red-500 text-black m-2 p-3 rounded-lg font-bold cursor-pointer" onClick={()=>{
                     const filteredRes=listofRestaurants.filter((res)=>res.info.name.toLowerCase().trim().includes(searchInp.toLowerCase().trim()))
                     setfilteredRestaurants(filteredRes)
                 }}>Search</button>
                 &nbsp;
-                <button className="clear-search-btn" onClick={()=>{
+                <button className="bg-amber-500 text-black m-2 p-3 rounded-lg font-bold cursor-pointer" onClick={()=>{
                     setSearchInp("");
                     setfilteredRestaurants(listofRestaurants)
                 }}>Clear</button>
@@ -73,7 +79,7 @@ const Body=()=>{
             </div>
 
 
-            <div className="res-container">
+            <div className="flex  flex-wrap justify-center gap-4 w-full 0">
 
                 {
                     filteredRestaurants.map((restaurant) =>
