@@ -3,12 +3,15 @@ import resList from "../utils/mockData";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import { PromotedResCard } from "./RestaurentCard";
 
 const Body=()=>{
 
     const [listofRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurants, setfilteredRestaurants] = useState([]);
     const [searchInp,setSearchInp] = useState("");
+
+    console.log("list of restaurants", listofRestaurants);
 
     useEffect(()=>{
         fetchData();
@@ -35,6 +38,8 @@ const Body=()=>{
     // if (listofRestaurants.length === 0) {
     //     return <Shimmer/>
     // }
+
+    const PromotedCard=PromotedResCard(RestaurentCard)
 
     return listofRestaurants.length === 0 ? <Shimmer/> : (
         <div className="body">
@@ -84,7 +89,11 @@ const Body=()=>{
                 {
                     filteredRestaurants.map((restaurant) =>
                         <Link to={`/restaurant/${restaurant.info.id}` } key={restaurant.info.id}>
-                         <RestaurentCard  resList={restaurant}/>
+                         
+                         {
+                            restaurant.info.promoted ? ( <PromotedCard resList={restaurant} /> ) : ( <RestaurentCard resList={restaurant} /> )
+                         }
+
                          </Link>
                     )
                 }

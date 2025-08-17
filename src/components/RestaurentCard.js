@@ -23,4 +23,17 @@ const RestaurentCard=(props)=>{
     )
 }
 
+// Higher Order Component to wrap RestaurentCard with Promoted label
+// This allows us to add the label without modifying the original component
+export const PromotedResCard=(RestaurentCard)=>{
+    return (props)=>{
+        return (
+            <div>
+                <label className="absolute bg-green-600 text-white  p-2 rounded-full">Promoted</label>
+                <RestaurentCard {...props} />
+            </div>
+        )
+    }
+}
+
 export default RestaurentCard;
