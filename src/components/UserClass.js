@@ -65,7 +65,7 @@ class UserClass extends React.Component{
         let {avatar_url,name,followers,following,login}=this.state
         return(
         <div>
-            <div className="user-card">
+            <div className="flex justify-between p-5">
             {/* <h2>Count1 : {cnt1}</h2>
             <h2>Count2 : {cnt2}</h2>
             <button onClick={
@@ -89,13 +89,13 @@ class UserClass extends React.Component{
 
                 }
             }>Increase cnt1 and cnt2</button> */}
-            <div className="user-info">
-            <h2>Name : {name}</h2>
-            <h2>followers : {followers}</h2>
-            <h2>following : {following}</h2>
-            <h2>Github : {login}</h2>
+            <div className="user-info p-2">
+            <h2 className="font-bold text-7xl">{name}</h2>
+            {/* <h2>followers : {followers}</h2>
+            <h2>following : {following}</h2> */}
+            <h2 className="font-bold m-2">Github : {login}</h2>
             </div>
-            <img src={avatar_url} alt="avatar" />
+            <img src={avatar_url} alt="avatar" className="rounded-full 5 " />
             
             </div>
         </div>
