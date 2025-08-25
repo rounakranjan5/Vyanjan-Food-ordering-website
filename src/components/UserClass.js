@@ -1,4 +1,5 @@
 import React from "react"
+import userContext from "../utils/userContext";
 class UserClass extends React.Component{
 
     constructor(props){
@@ -91,11 +92,19 @@ class UserClass extends React.Component{
             }>Increase cnt1 and cnt2</button> */}
             <div className="user-info p-2">
             <h2 className="font-bold text-7xl">{name}</h2>
+
+            <userContext.Consumer>
+                {({loggedInUserName})=>
+                     <h2 className="font-bold text-xl">loggedInUserName: {loggedInUserName}</h2>
+                }
+            </userContext.Consumer>
+
+
             {/* <h2>followers : {followers}</h2>
             <h2>following : {following}</h2> */}
             <h2 className="font-bold m-2">Github : {login}</h2>
             </div>
-            <img src={avatar_url} alt="avatar" className="rounded-full 5 " />
+            <img src={avatar_url} alt="avatar" className="rounded-full w-20 h-20" />
             
             </div>
         </div>

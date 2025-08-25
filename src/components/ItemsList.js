@@ -18,7 +18,10 @@ const ItemsList = (props) => {
                                 <div className='mb-1 flex justify-center gap-2 flex-wrap-reverse md:flex-nowrap md:justify-between'>
                                   
                                       <h4 className='text-wrap'>{item?.card?.info?.description}</h4>
+                                      <div className='relative'>
                                       <img src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/"+item?.card?.info?.imageId} className='rounded-md '/>
+                                      <button className='text-white p-3 rounded-lg font-semibold bg-black absolute top-9/12 left-2/5'>Add +</button>
+                                      </div>
                                    
                                 </div>
 

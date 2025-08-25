@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import "../index.css";
 import Body from "./components/Body";
@@ -11,6 +11,7 @@ import RestaurentMenu from "./components/RestaurentMenu";
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { lazy } from "react";
+import userContext from "./utils/userContext";
 
 // resList[0].card.card.gridElements.infoWithStyle.restaurants[0].info.name
 
@@ -18,12 +19,29 @@ const Contact = lazy(()=> import("./components/Contact"))
 
 
 const AppLayout = () => {
+    let [UserName, setUserName] = useState();
+    
+    
+
+    useEffect(()=>{
+            const data={
+                // fetch the api find the username and set it here
+                UserName: "Rounak Bhaii"
+            }
+
+            setUserName(data.UserName)
+    },[])
+
     return (
-        <div className="app">
-            <Header/>
-            <Outlet/>
-            
-        </div>
+            <userContext.Provider value={{loggedInUserName: UserName , setUserName}}>
+            <div className="app">
+                
+                <Header/>
+                <Outlet/>
+                
+            </div>
+            </userContext.Provider>
+
     );
 };
 

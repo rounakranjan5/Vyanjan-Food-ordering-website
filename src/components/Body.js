@@ -1,15 +1,17 @@
 import RestaurentCard from "./RestaurentCard";
 import resList from "../utils/mockData";
-import { useState,useEffect } from "react";
+import { useState,useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { PromotedResCard } from "./RestaurentCard";
+import userContext from "../utils/userContext";
 
 const Body=()=>{
 
     const [listofRestaurants, setListOfRestaurants] = useState([]);
     const [filteredRestaurants, setfilteredRestaurants] = useState([]);
     const [searchInp,setSearchInp] = useState("");
+    let {loggedInUserName,setUserName}=useContext(userContext)
 
     console.log("list of restaurants", listofRestaurants);
 
@@ -79,6 +81,12 @@ const Body=()=>{
                     setSearchInp("");
                     setfilteredRestaurants(listofRestaurants)
                 }}>Clear</button>
+
+                {/* changing context state variables  */}
+                <input type="text" className="w-6/12 border-2 p-2 m-5" placeholder="change username..." value={loggedInUserName} onChange={(e)=>{
+                    setUserName(e.target.value)
+                }} />
+
             </div>
 
             </div>

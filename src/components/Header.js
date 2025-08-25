@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 
 const Header=()=>{
     let [isLoggedIn, setIsLoggedIn] = useState("Login");
+
+    let {loggedInUserName}=useContext(userContext)
 
     let onlineStatus = useOnlineStatus();
     return (
@@ -31,6 +34,10 @@ const Header=()=>{
                     }}>
                        {isLoggedIn === "Login" ? "🔐 Login" : "👋 Logout"}
                     </button>
+                    </li>
+
+                    <li>
+                        {loggedInUserName}
                     </li>
                 </ul>
                 </div>
