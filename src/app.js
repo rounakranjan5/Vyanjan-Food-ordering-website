@@ -12,6 +12,9 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { lazy } from "react";
 import userContext from "./utils/userContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 // resList[0].card.card.gridElements.infoWithStyle.restaurants[0].info.name
 
@@ -33,6 +36,7 @@ const AppLayout = () => {
     },[])
 
     return (
+            <Provider store={appStore}>
             <userContext.Provider value={{loggedInUserName: UserName , setUserName}}>
             <div className="app">
                 
@@ -41,6 +45,7 @@ const AppLayout = () => {
                 
             </div>
             </userContext.Provider>
+            </Provider>
 
     );
 };
@@ -60,6 +65,11 @@ const appRouter=createBrowserRouter([
             {
                 path:"/about",
                 element: <About/>
+            }, 
+
+            {
+                path:"/cart",
+                element: <Cart/>
             }, 
 
             {

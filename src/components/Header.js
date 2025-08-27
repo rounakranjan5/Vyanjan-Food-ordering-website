@@ -3,11 +3,16 @@ import { LOGO_URL } from "../utils/constants";
 import { useContext, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import userContext from "../utils/userContext";
+import { useSelector } from "react-redux";
 
 const Header=()=>{
     let [isLoggedIn, setIsLoggedIn] = useState("Login");
 
     let {loggedInUserName}=useContext(userContext)
+
+    // subscribing to the store using a selector 
+    let cartItems=useSelector((store)=> store.cart.items)
+    console.log("cartItems",cartItems);
 
     let onlineStatus = useOnlineStatus();
     return (
@@ -25,7 +30,7 @@ const Header=()=>{
                     <li><Link to="/" className="hover:text-gray-300">Home</Link></li>
                     <li><Link to="/about" className="hover:text-gray-300">About</Link></li>
                     <li><Link to="/contact" className="hover:text-gray-300">Contact</Link></li>
-                    <li><span className="hover:text-gray-300 cursor-pointer">Cart🛒</span></li>
+                    <li><Link to="/cart" className="hover:text-gray-300 cursor-pointer">Cart🛒({cartItems.length})</Link></li>
                     <li>
                     <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-red-800 px-4 py-2 mb-2 rounded-full font-bold text-lg hover:from-yellow-500 hover:to-yellow-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-yellow-300" onClick={()=>{
                          {

@@ -13,9 +13,9 @@ const ResCategory = ({ data,isAccordionOpen,setAccordionIndex }) => {
     return (
         <div>
 
-            <div className="w-11.5/12   border-gray-200 bg-gray-100 m-3 p-3  rounded-lg shadow-md hover:bg-gray-200 cursor-pointer text-lg  mb-5" onClick={handleAccordion}>
+            <div className="w-11.5/12   border-gray-200 bg-gray-100 m-3 p-3  rounded-lg shadow-md hover:bg-gray-200 cursor-pointer text-lg  mb-5" >
 
-                <div className="flex justify-between flex-wrap">
+                <div className="flex justify-between flex-wrap" onClick={handleAccordion}>
                     <span className="font-semibold">{data?.card?.card?.title} ({data?.card?.card?.itemCards?.length}) </span>
                     <span className="font-extrabold">⌄</span>
                 </div>
